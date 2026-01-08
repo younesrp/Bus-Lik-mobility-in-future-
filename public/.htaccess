@@ -1,0 +1,8 @@
+# Configuration pour le dossier public
+RewriteEngine On
+
+# Protection des fichiers sensibles
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
