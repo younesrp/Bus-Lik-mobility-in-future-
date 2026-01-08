@@ -11,16 +11,12 @@ if (!$user_id) {
 }
 
 try {
-    $stmt = $conn->prepare("SELECT balance FROM users WHERE id = :user_id");
+    $stmt = $conn->prepare("SELECT * FROM trips WHERE user_id = :user_id ORDER BY created_at DESC");
     $stmt->bindParam(':user_id', $user_id);
     $stmt->execute();
-    $balance = $stmt->fetch(PDO::FETCH_ASSOC);
+    $trips = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    if ($balance) {
-        echo json_encode(["status" => "success", "balance" => $balance['balance']]);
-    } else {
-        echo json_encode(["status" => "error", "message" => "User not found"]);
-    }
+    echo json_encode(["status" => "success", "trips" => $trips]);
 } catch (PDOException $e) {
     echo json_encode(["status" => "error", "message" => $e->getMessage()]);
 }
