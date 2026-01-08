@@ -8,7 +8,7 @@ $basePath = getBasePath();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo isset($pageTitle) ? $pageTitle . ' - ' : ''; ?>Bus-Lik</title>
+    <title><?php echo isset($pageTitle) ? $pageTitle . ' - ' : ''; ?>BusLik</title>
     <?php
     // Déterminer le chemin du CSS
     $cssPath = getAssetPath('assets/css/style.css');
@@ -33,11 +33,18 @@ $basePath = getBasePath();
                 <div class="nav-brand">
                     <a href="<?php echo $basePath; ?>public/index.php">
                         <?php
-                        // Chemin absolu depuis la racine du serveur web
-                        $logoPath = '/Bus-Lik-mobility-in-future-/assets/images/image1.png';
+                        // Déterminer le chemin du logo
+                        $logoPath = getAssetPath('assets/images/image1.png');
+                        if (strpos($_SERVER['PHP_SELF'], '/public/') !== false) {
+                            $logoPath = '../assets/images/image1.png';
+                        } elseif (strpos($_SERVER['PHP_SELF'], '/admin/') !== false || strpos($_SERVER['PHP_SELF'], '/api/') !== false) {
+                            $logoPath = '../assets/images/image1.png';
+                        } else {
+                            $logoPath = 'assets/images/image1.png';
+                        }
                         ?>
-                        <img src="<?php echo $logoPath; ?>" alt="Bus-Lik Logo" class="logo-image" style="display: block !important; height: 45px !important; width: auto !important; visibility: visible !important; max-width: 150px !important;">
-                        <span class="logo-text">Bus-Lik</span>
+                        <img src="<?php echo $logoPath; ?>" alt="BusLik Logo" class="logo-image" style="display: block !important; height: 45px !important; width: auto !important; visibility: visible !important; max-width: 150px !important;">
+                        <span class="logo-text">BusLik</span>
                     </a>
                 </div>
                 <ul class="nav-menu">

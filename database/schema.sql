@@ -1,3 +1,6 @@
+CREATE DATABASE buslik;
+USE buslik
+
 -- Users table
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,

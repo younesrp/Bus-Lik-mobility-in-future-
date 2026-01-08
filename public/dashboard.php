@@ -51,8 +51,8 @@ $thisMonthTrips = 8;
             </div>
 
             <div class="stat-card">
-                <div class="stat-icon" style="background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%);">
-                    🚌
+                <div class="stat-icon" style="background: linear-gradient(135deg, #ED8936 0%, #DD6B20 100%); display: flex; align-items: center; justify-content: center;">
+                    <img src="../assets/images/image1.png" alt="Bus" style="height: 30px; width: auto; max-width: 40px;">
                 </div>
                 <div class="stat-content">
                     <h3>Trajets</h3>
@@ -120,7 +120,7 @@ $thisMonthTrips = 8;
             <h2 class="section-title">Trajets récents</h2>
             <div class="trips-list">
                 <div class="trip-item">
-                    <div class="trip-icon">🚌</div>
+                    <div class="trip-icon"><img src="../assets/images/image1.png" alt="Bus" style="height: 24px; width: auto; max-width: 30px;"></div>
                     <div class="trip-details">
                         <h4>Ligne 12 - Station Centre</h4>
                         <p>Aujourd'hui à 14:30</p>
@@ -129,7 +129,7 @@ $thisMonthTrips = 8;
                 </div>
 
                 <div class="trip-item">
-                    <div class="trip-icon">🚌</div>
+                    <div class="trip-icon"><img src="../assets/images/image1.png" alt="Bus" style="height: 24px; width: auto; max-width: 30px;"></div>
                     <div class="trip-details">
                         <h4>Ligne 8 - Station Université</h4>
                         <p>Hier à 08:15</p>
@@ -138,7 +138,7 @@ $thisMonthTrips = 8;
                 </div>
 
                 <div class="trip-item">
-                    <div class="trip-icon">🚌</div>
+                    <div class="trip-icon"><img src="../assets/images/image1.png" alt="Bus" style="height: 24px; width: auto; max-width: 30px;"></div>
                     <div class="trip-details">
                         <h4>Ligne 5 - Station Marché</h4>
                         <p>Il y a 2 jours à 16:45</p>

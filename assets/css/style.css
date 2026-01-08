@@ -548,8 +548,16 @@ body::before {
 }
 
 .footer-section h3::before {
-    content: '🚌';
-    font-size: 2rem;
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    background-image: url('../images/image1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 8px;
+    vertical-align: middle;
     filter: drop-shadow(0 2px 4px rgba(74, 110, 209, 0.5));
 }
 
