@@ -32,7 +32,11 @@ $basePath = getBasePath();
             <div class="container">
                 <div class="nav-brand">
                     <a href="<?php echo $basePath; ?>public/index.php">
-                        <span class="logo-icon">🚌</span>
+                        <?php
+                        // Chemin absolu depuis la racine du serveur web
+                        $logoPath = '/Bus-Lik-mobility-in-future-/assets/images/image1.png';
+                        ?>
+                        <img src="<?php echo $logoPath; ?>" alt="Bus-Lik Logo" class="logo-image" style="display: block !important; height: 45px !important; width: auto !important; visibility: visible !important; max-width: 150px !important;">
                         <span class="logo-text">Bus-Lik</span>
                     </a>
                 </div>
