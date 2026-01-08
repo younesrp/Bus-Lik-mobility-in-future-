@@ -1,23 +1,37 @@
 <?php
-header("Content-Type: application/json");
+header('Content-Type: application/json');
 require_once '../config/Db.php';
+require_once '../app/models/Ligne.php';
+require_once '../app/models/Station.php';
 
-$conn = Db::connection();
+$line_id = $_GET['line_id'] ?? null;
+
+if (!$line_id) {
+    echo json_encode(['status' => 'error', 'message' => 'line_id required']);
+    exit;
+}
 
 try {
-    // Get all lines
-    $stmt = $conn->query("SELECT * FROM lines");
-    $lines = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($lines as &$line) {
-        // Get stations for each line
-        $stmt2 = $conn->prepare("SELECT * FROM stations WHERE line_id = :line_id");
-        $stmt2->bindParam(':line_id', $line['id']);
-        $stmt2->execute();
-        $line['stations'] = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+    $ligne = new Ligne();
+    $line = $ligne->getById($line_id);
+    
+    if (!$line) {
+        echo json_encode(['status' => 'error', 'message' => 'Line not found']);
+        exit;
     }
-
-    echo json_encode(["status" => "success", "lines" => $lines]);
-} catch (PDOException $e) {
-    echo json_encode(["status" => "error", "message" => $e->getMessage()]);
+    
+    $station = new Station();
+    $stations = $station->getStationsByLine($line_id);
+    
+    echo json_encode([
+        'status' => 'success',
+        'line' => $line,
+        'stations' => $stations
+    ]);
+} catch (Exception $e) {
+    echo json_encode([
+        'status' => 'error',
+        'message' => $e->getMessage()
+    ]);
 }
+?>

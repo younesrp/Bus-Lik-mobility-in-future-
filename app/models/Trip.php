@@ -1,5 +1,6 @@
 <?php
-require_once 'QRCode.php';
+require_once __DIR__ . '/../config/Db.php';
+require_once __DIR__ . '/QRToken.php';
 
 class Trip {
     private $conn;
@@ -14,8 +15,28 @@ class Trip {
     public $status;
     public $created_at;
     
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct($db = null) {
+        $this->conn = $db ?: Db::connection();
+    }
+    
+    public function create() {
+        $query = "INSERT INTO " . $this->table . " 
+                  (user_id, line_id, start_station_id, end_station_id, price, status) 
+                  VALUES (:user_id, :line_id, :start_station_id, :end_station_id, :price, :status)";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':user_id', $this->user_id);
+        $stmt->bindParam(':line_id', $this->line_id);
+        $stmt->bindParam(':start_station_id', $this->start_station_id);
+        $stmt->bindParam(':end_station_id', $this->end_station_id);
+        $stmt->bindParam(':price', $this->price);
+        $stmt->bindParam(':status', $this->status);
+        
+        if($stmt->execute()) {
+            $this->id = $this->conn->lastInsertId();
+            return $this->id;
+        }
+        return false;
     }
     
     public function generateQR() {
@@ -29,23 +50,6 @@ class Trip {
         return null;
     }
     
-    public function create($user_id, $line_id, $start_station_id, $price) {
-        $query = "INSERT INTO " . $this->table . " 
-                  (user_id, line_id, start_station_id, price, status) 
-                  VALUES (:user_id, :line_id, :start_station_id, :price, 'pending')";
-        
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':user_id', $user_id);
-        $stmt->bindParam(':line_id', $line_id);
-        $stmt->bindParam(':start_station_id', $start_station_id);
-        $stmt->bindParam(':price', $price);
-        
-        if($stmt->execute()) {
-            $this->id = $this->conn->lastInsertId();
-            return true;
-        }
-        return false;
-    }
     
     public function getUserTrips($user_id) {
         $query = "SELECT t.*, l.name as line_name, 

@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BusLik - Réservez votre voyage</title>
-    
-    <!-- Google Fonts (Poppins) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome pour les icônes -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="../assets/css/style.css">
+<?php
+$pageTitle = "Accueil";
+require_once '../includes/header-unified.php';
+?>
     
     <style>
         .hero-section {
@@ -207,35 +197,6 @@
             }
         }
     </style>
-</head>
-<body>
-    <!-- Navigation -->
-    <nav style="background: #111632; color: #FFFFFF; padding: 1.25rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center;">
-            <!-- Logo -->
-            <a href="index.php" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
-                <img src="../assets/images/image1.png" alt="BusLik Logo" style="height: 35px; width: auto;">
-                <span style="color: #FFFFFF; font-size: 1.5rem; font-weight: 600;">BusLik</span>
-            </a>
-
-            <!-- Desktop Menu -->
-            <div style="display: flex; align-items: center; gap: 2.5rem;">
-                <a href="index.php" style="color: #FFFFFF; text-decoration: none; font-weight: 500; position: relative; padding-bottom: 0.5rem;">
-                    Accueil
-                    <span style="position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #FF7A2A;"></span>
-                </a>
-                <a href="horaires.php" style="color: #FFFFFF; text-decoration: none; font-weight: 500;">Horaires</a>
-                <a href="lignes.php" style="color: #FFFFFF; text-decoration: none; font-weight: 500;">Nos Destinations</a>
-                <a href="#" style="color: #FFFFFF; text-decoration: none; font-weight: 500;">A Propos</a>
-            </div>
-
-            <!-- Auth Buttons -->
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                <a href="login.php" style="background: #FF7A2A; color: #FFFFFF; padding: 0.625rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 500; transition: background 0.3s;">Login</a>
-                <a href="register.php" style="background: #4A6ED1; color: #FFFFFF; padding: 0.625rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 500; transition: background 0.3s;">Sign Up</a>
-            </div>
-        </div>
-    </nav>
 
     <!-- Hero Section -->
     <section class="hero-section">
@@ -314,6 +275,4 @@
         </div>
     </section>
 
-    <?php require_once '../includes/footer.php'; ?>
-</body>
-</html>
+    <?php require_once '../includes/footer-unified.php'; ?>

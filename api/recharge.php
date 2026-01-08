@@ -1,26 +1,56 @@
 <?php
-header("Content-Type: application/json");
+header('Content-Type: application/json');
+session_start();
 require_once '../config/Db.php';
 
-$conn = Db::connection();
+if (!isset($_SESSION['user_id'])) {
+    echo json_encode(['status' => 'error', 'message' => 'Non authentifié']);
+    exit;
+}
 
-$user_id = $_GET['user_id'] ?? 0;
-if (!$user_id) {
-    echo json_encode(["status" => "error", "message" => "User ID required"]);
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    echo json_encode(['status' => 'error', 'message' => 'Method not allowed']);
+    exit;
+}
+
+$data = json_decode(file_get_contents('php://input'), true);
+$amount = floatval($data['amount'] ?? $_POST['amount'] ?? 0);
+$user_id = $_SESSION['user_id'];
+
+if ($amount <= 0) {
+    echo json_encode(['status' => 'error', 'message' => 'Montant invalide']);
     exit;
 }
 
 try {
-    $stmt = $conn->prepare("SELECT balance FROM users WHERE id = :user_id");
+    $db = Db::connection();
+    
+    // Vérifier si le wallet existe, sinon le créer
+    $stmt = $db->prepare("SELECT id, balance FROM wallets WHERE user_id = :user_id");
     $stmt->bindParam(':user_id', $user_id);
     $stmt->execute();
-    $balance = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($balance) {
-        echo json_encode(["status" => "success", "balance" => $balance['balance']]);
+    $wallet = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($wallet) {
+        $newBalance = $wallet['balance'] + $amount;
+        $stmt = $db->prepare("UPDATE wallets SET balance = :balance WHERE user_id = :user_id");
+        $stmt->bindParam(':balance', $newBalance);
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->execute();
     } else {
-        echo json_encode(["status" => "error", "message" => "User not found"]);
+        $stmt = $db->prepare("INSERT INTO wallets (user_id, balance) VALUES (:user_id, :balance)");
+        $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':balance', $amount);
+        $stmt->execute();
+        $newBalance = $amount;
     }
-} catch (PDOException $e) {
-    echo json_encode(["status" => "error", "message" => $e->getMessage()]);
+    
+    echo json_encode([
+        'status' => 'success',
+        'message' => 'Recharge effectuée avec succès',
+        'new_balance' => $newBalance
+    ]);
+} catch (Exception $e) {
+    echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
 }
+?>

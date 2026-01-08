@@ -27,7 +27,7 @@ require_once '../includes/header.php';
                 <p>Connectez-vous à votre compte</p>
             </div>
                 
-            <form action="../api/login.php" method="POST" class="login-form" id="loginForm">
+            <form action="auth/login.php" method="POST" class="login-form" id="loginForm">
                 <?php if (isset($_GET['error'])): ?>
                     <div class="alert alert-error">
                         <span>⚠️</span>

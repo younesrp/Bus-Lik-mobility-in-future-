@@ -1,5 +1,5 @@
 CREATE DATABASE buslik;
-USE buslik
+USE buslik;
 
 -- Users table
 CREATE TABLE users (

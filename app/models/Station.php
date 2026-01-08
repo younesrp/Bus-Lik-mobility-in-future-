@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../config/Db.php';
+
 class Station {
     private $conn;
     private $table = 'stations';
@@ -8,8 +10,8 @@ class Station {
     public $latitude;
     public $longitude;
     
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct($db = null) {
+        $this->conn = $db ?: Db::connection();
     }
     
     public function getAll() {

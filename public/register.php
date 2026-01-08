@@ -27,7 +27,7 @@ require_once '../includes/header.php';
                 <p>Créez votre compte</p>
             </div>
                 
-            <form action="../auth/register.php" method="POST" class="login-form" id="registerForm">
+            <form action="auth/register.php" method="POST" class="login-form" id="registerForm">
                 <?php if (isset($_GET['error'])): ?>
                     <div class="alert alert-error">
                         <span>⚠️</span>

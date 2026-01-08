@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../config/Db.php';
+
 class QRToken {
     private $conn;
     private $table = 'qr_tokens';
@@ -9,8 +11,35 @@ class QRToken {
     public $expires_at;
     public $used_at;
     
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct($db = null) {
+        $this->conn = $db ?: Db::connection();
+    }
+    
+    public function getByToken($token) {
+        $query = "SELECT * FROM " . $this->table . " WHERE token = :token LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':token', $token);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    public function markAsUsed($id) {
+        $query = "UPDATE " . $this->table . " SET used_at = NOW() WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
+    
+    public function create($trip_id, $token, $expires_at) {
+        $query = "INSERT INTO " . $this->table . " (trip_id, token, expires_at) VALUES (:trip_id, :token, :expires_at)";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':trip_id', $trip_id);
+        $stmt->bindParam(':token', $token);
+        $stmt->bindParam(':expires_at', $expires_at);
+        if($stmt->execute()) {
+            return $this->conn->lastInsertId();
+        }
+        return false;
     }
     
     public function validate($token) {
@@ -39,18 +68,6 @@ class QRToken {
             }
         }
         return false;
-    }
-    
-    public function create($trip_id, $token) {
-        $query = "INSERT INTO " . $this->table . " 
-                  (trip_id, token, expires_at) 
-                  VALUES (:trip_id, :token, DATE_ADD(NOW(), INTERVAL 1 HOUR))";
-        
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':trip_id', $trip_id);
-        $stmt->bindParam(':token', $token);
-        
-        return $stmt->execute();
     }
 }
 ?>

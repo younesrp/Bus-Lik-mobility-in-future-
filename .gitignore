@@ -1,0 +1,49 @@
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+config.local.php
+
+# Dependencies
+vendor/
+node_modules/
+
+# Database
+*.sql.bak
+*.db
+*.sqlite
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Cache
+cache/
+*.cache
+
+# Uploads (if any)
+uploads/
+storage/
+
+# Composer
+composer.lock
+composer.phar
+
+# PHP
+*.php~
+*.php.bak

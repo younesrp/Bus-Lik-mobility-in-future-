@@ -27,7 +27,7 @@ require_once '../includes/header.php';
                 <p>Réinitialiser votre mot de passe</p>
             </div>
                 
-            <form action="../auth/forgot.php" method="POST" class="login-form" id="forgotForm">
+            <form action="auth/forgot.php" method="POST" class="login-form" id="forgotForm">
                 <?php if (isset($_GET['error'])): ?>
                     <div class="alert alert-error">
                         <span>⚠️</span>

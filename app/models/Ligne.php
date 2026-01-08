@@ -1,5 +1,7 @@
 <?php
-class Line {
+require_once __DIR__ . '/../config/Db.php';
+
+class Ligne {
     private $conn;
     private $table = 'lines';
     
@@ -7,8 +9,8 @@ class Line {
     public $name;
     public $code;
     
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct($db = null) {
+        $this->conn = $db ?: Db::connection();
     }
     
     public function getAll() {

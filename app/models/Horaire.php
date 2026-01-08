@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/../config/Db.php';
+
 class Horaire {
     private $conn;
     private $table = 'horaires';
@@ -10,8 +12,8 @@ class Horaire {
     public $day_type; // 'weekday', 'saturday', 'sunday'
     public $direction; // 'forward', 'backward'
     
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct($db = null) {
+        $this->conn = $db ?: Db::connection();
     }
     
     /**

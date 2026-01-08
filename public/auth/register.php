@@ -1,7 +1,8 @@
 <?php
+// Handler pour register depuis public/
 session_start();
-require_once '../config/Db.php';
-require_once '../app/models/User.php';
+require_once '../../config/Db.php';
+require_once '../../app/models/User.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? '';
@@ -10,17 +11,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirm_password = $_POST['confirm_password'] ?? '';
 
     if (empty($name) || empty($email) || empty($password)) {
-        header("Location: ../public/register.php?error=" . urlencode("Tous les champs sont requis"));
+        header("Location: ../register.php?error=" . urlencode("Tous les champs sont requis"));
         exit;
     }
 
     if ($password !== $confirm_password) {
-        header("Location: ../public/register.php?error=" . urlencode("Les mots de passe ne correspondent pas"));
+        header("Location: ../register.php?error=" . urlencode("Les mots de passe ne correspondent pas"));
         exit;
     }
 
     if (strlen($password) < 6) {
-        header("Location: ../public/register.php?error=" . urlencode("Le mot de passe doit contenir au moins 6 caractères"));
+        header("Location: ../register.php?error=" . urlencode("Le mot de passe doit contenir au moins 6 caractères"));
         exit;
     }
 
@@ -28,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userModel = new User();
         
         if ($userModel->getByEmail($email)) {
-            header("Location: ../public/register.php?error=" . urlencode("Cet email est déjà utilisé"));
+            header("Location: ../register.php?error=" . urlencode("Cet email est déjà utilisé"));
             exit;
         }
 
@@ -48,19 +49,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_name'] = $user['fullname'];
                 $_SESSION['user_email'] = $user['email'];
                 $_SESSION['user_role'] = $user['role'];
-                header("Location: ../public/dashboard.php?success=" . urlencode("Inscription réussie"));
+                header("Location: ../dashboard.php?success=" . urlencode("Inscription réussie"));
                 exit;
             }
         }
         
-        header("Location: ../public/register.php?error=" . urlencode("Erreur lors de l'inscription"));
+        header("Location: ../register.php?error=" . urlencode("Erreur lors de l'inscription"));
         exit;
     } catch (Exception $e) {
-        header("Location: ../public/register.php?error=" . urlencode("Erreur: " . $e->getMessage()));
+        header("Location: ../register.php?error=" . urlencode("Erreur: " . $e->getMessage()));
         exit;
     }
 } else {
-    header("Location: ../public/register.php");
+    header("Location: ../register.php");
     exit;
 }
 ?>

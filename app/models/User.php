@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../config/Db.php';
 
 class User {
     private $conn;
@@ -12,8 +12,34 @@ class User {
     public $role;
     public $created_at;
     
-    public function __construct($db) {
-        $this->conn = $db;
+    public function __construct($db = null) {
+        $this->conn = $db ?: Db::connection();
+    }
+    
+    public function getByEmail($email) {
+        $query = "SELECT * FROM " . $this->table . " WHERE email = :email LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    
+    public function create($fullname, $email, $password) {
+        $query = "INSERT INTO " . $this->table . " (fullname, email, password, role) VALUES (:fullname, :email, :password, 'user')";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':fullname', $fullname);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        if ($stmt->execute()) {
+            $userId = $this->conn->lastInsertId();
+            // Create wallet for new user
+            $walletQuery = "INSERT INTO wallets (user_id, balance) VALUES (:user_id, 0.00)";
+            $walletStmt = $this->conn->prepare($walletQuery);
+            $walletStmt->bindParam(':user_id', $userId);
+            $walletStmt->execute();
+            return true;
+        }
+        return false;
     }
     
     public function register() {
