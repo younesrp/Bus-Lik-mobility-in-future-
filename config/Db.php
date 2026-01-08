@@ -1,29 +1,25 @@
 <?php
-    class Db{
-        private static ?PDO $connect = null;
-        private static $host = "localhost";
-        private static $db_name = "buslik";
-        private static $password = "";
-        private static $user = "root";
-        private static $root = 3307;
+class Db {
+    private static ?PDO $connect = null;
+    private static $host = "localhost";
+    private static $db_name = "buslik";
+    private static $password = "";
+    private static $user = "root";
+    private static $port = 3307;
 
-        public static function connection(){
-            if(self::$connect === null){
-                try{
-                     $sdn = "mysql:host=". self::$host . ";port=" . self::$root .";dbname=" . self::$db_name;
-                    self::$connect = new PDO($sdn, self::$user, self::$password );
-                    self::$connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                    }
-               catch(PDOException $e){
-                    echo "error" . $e->getMessage();
-               }
+    public static function connection(): PDO {
+        if (self::$connect === null) {
+            try {
+                $dsn = "mysql:host=" . self::$host . ";port=" . self::$port . ";dbname=" . self::$db_name;
+                self::$connect = new PDO($dsn, self::$user, self::$password);
+                self::$connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            } catch (PDOException $e) {
+                // For hackathon: send as JSON instead of echo
+                echo json_encode(["status" => "error", "message" => "Database connection failed: " . $e->getMessage()]);
+                exit;
             }
-            
         }
+        return self::$connect;
     }
-
-    $s = new Db();
-    $s::connection();
-
-    ?>
-    
+}
+?>
