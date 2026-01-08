@@ -22,9 +22,9 @@ require_once '../includes/header.php';
         <div class="login-box">
             <div class="login-header">
                 <div class="logo-bus">
-                    <img src="../assets/images/image1.png" alt="Bus-Lik Logo" style="height: 80px; width: auto; max-width: 200px; display: block; margin: 0 auto;">
+                    <img src="../assets/images/image1.png" alt="BusLik Logo" style="height: 80px; width: auto; max-width: 200px; display: block; margin: 0 auto;">
                 </div>
-                <h1>Bus-Lik</h1>
+                <h1>BusLik</h1>
                 <p>Connectez-vous à votre compte</p>
             </div>
                 
