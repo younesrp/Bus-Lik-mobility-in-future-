@@ -40,7 +40,16 @@ $basePath = getBasePath();
                     <li><a href="<?php echo $basePath; ?>public/index.php">Accueil</a></li>
                     <li><a href="<?php echo $basePath; ?>public/stations.php">Stations</a></li>
                     <li><a href="<?php echo $basePath; ?>public/lignes.php">Lignes</a></li>
-                    <li><a href="<?php echo $basePath; ?>public/login.php" class="btn-login">Connexion</a></li>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <li><a href="<?php echo $basePath; ?>public/dashboard.php" class="nav-link-active">Tableau de bord</a></li>
+                        <li class="nav-user-menu">
+                            <a href="<?php echo $basePath; ?>public/profil.php" class="user-avatar">
+                                <span>👤</span>
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <li><a href="<?php echo $basePath; ?>public/login.php" class="btn-login">Connexion</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </nav>

@@ -13,6 +13,45 @@ body {
     padding: 0 !important;
 }
 
+.main-header {
+    background: #FFFFFF !important;
+    box-shadow: 0 2px 15px rgba(74, 110, 209, 0.1) !important;
+    position: sticky !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 1000 !important;
+    border-bottom: 2px solid #4A6ED1 !important;
+}
+
+.navbar .container {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 20px !important;
+}
+
+.nav-menu {
+    display: flex !important;
+    flex-direction: row !important;
+    list-style: none !important;
+    gap: 0.5rem !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-wrap: nowrap !important;
+}
+
+.nav-menu li {
+    margin: 0 !important;
+    display: inline-block !important;
+}
+
 body::before {
     content: '';
     position: fixed;
