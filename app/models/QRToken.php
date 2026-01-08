@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../config/Db.php';
+require_once dirname(__DIR__, 2) . '/config/Db.php';
 
 class QRToken {
     private $conn;

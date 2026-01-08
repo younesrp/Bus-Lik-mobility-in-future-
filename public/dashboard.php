@@ -51,6 +51,12 @@ $recentTrips = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div style="min-height: 80vh; padding: 4rem 2rem; background: #111632;">
     <div style="max-width: 1200px; margin: 0 auto;">
+        <?php if (isset($_GET['success'])): ?>
+            <div style="background: rgba(72, 187, 120, 0.2); border: 1px solid #48BB78; color: #48BB78; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem;">
+                <span>✅</span>
+                <span><?php echo htmlspecialchars($_GET['success']); ?></span>
+            </div>
+        <?php endif; ?>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
             <div>
                 <h1 style="color: #FFFFFF; font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">

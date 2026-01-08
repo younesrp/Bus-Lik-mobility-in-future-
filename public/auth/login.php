@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_name'] = $user['fullname'];
             $_SESSION['user_email'] = $user['email'];
             $_SESSION['user_role'] = $user['role'];
-            header("Location: ../dashboard.php");
+            header("Location: ../dashboard.php?success=" . urlencode("Connexion réussie"));
             exit;
         } else {
             header("Location: ../login.php?error=" . urlencode("Email ou mot de passe incorrect"));
