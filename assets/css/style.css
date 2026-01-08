@@ -24,35 +24,21 @@
     --transition: all 0.3s ease;
 }
 
+html {
+    background: #111632;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
-    background: #0B1020;
-    background-image: 
-        radial-gradient(circle at 20% 30%, rgba(74, 110, 209, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(255, 122, 42, 0.25) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(181, 154, 144, 0.15) 0%, transparent 60%),
-        linear-gradient(135deg, #0B1020 0%, #1a1f3a 50%, #0B1020 100%);
+    background: #111632;
     min-height: 100vh;
     color: var(--text-dark);
     line-height: 1.6;
     position: relative;
-    background-attachment: fixed;
 }
 
 body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 10% 20%, rgba(74, 110, 209, 0.2) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(255, 122, 42, 0.2) 0%, transparent 40%),
-        radial-gradient(circle at 50% 50%, rgba(181, 154, 144, 0.1) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: 0;
-    animation: backgroundShift 20s ease-in-out infinite;
+    display: none;
 }
 
 @keyframes backgroundShift {
@@ -267,6 +253,7 @@ body::before {
     padding: 2rem 1rem;
     position: relative;
     z-index: 1;
+    background: #111632;
 }
 
 .login-wrapper {
@@ -968,7 +955,7 @@ body::before {
 }
 
 .hero-section {
-    background: linear-gradient(135deg, #4A6ED1 0%, #3A5AB8 100%);
+    background-color: #111632;
     padding: 5rem 0;
     position: relative;
     overflow: hidden;
@@ -1267,6 +1254,7 @@ body::before {
     padding: 2rem 1rem !important;
     position: relative !important;
     z-index: 1 !important;
+    background: #111632 !important;
 }
 
 .login-box {
@@ -1309,6 +1297,29 @@ body::before {
     filter: drop-shadow(0 4px 10px rgba(74, 110, 209, 0.3)) !important;
     display: block !important;
     margin: 0 auto !important;
+}
+
+/* Footer minimal pour les pages d'authentification */
+.auth-footer {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 1.5rem 0;
+    text-align: center;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.auth-footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.auth-footer p {
+    font-size: 0.875rem;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .form-input {

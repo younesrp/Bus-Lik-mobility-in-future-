@@ -92,6 +92,4 @@ require_once '../includes/header.php';
         </div>
     </div>
 </div>
-</body>
-</html>
-    <?php require_once '../includes/footer.php'; ?>
+    <?php require_once '../includes/footer-auth.php'; ?>

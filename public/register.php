@@ -144,6 +144,4 @@ document.getElementById('registerForm')?.addEventListener('submit', function(e) 
     }
 });
 </script>
-</body>
-</html>
-<?php require_once '../includes/footer.php'; ?>
+<?php require_once '../includes/footer-auth.php'; ?>
