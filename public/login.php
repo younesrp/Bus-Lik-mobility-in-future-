@@ -22,9 +22,8 @@ require_once '../includes/header.php';
         <div class="login-box">
             <div class="login-header">
                 <div class="logo-bus">
-                    <img src="../assets/images/image1.png" alt="BusLik Logo" style="height: 80px; width: auto; max-width: 200px; display: block; margin: 0 auto;">
+                    <img src="../assets/images/image1.png" alt="BusLik Logo">
                 </div>
-                <h1>BusLik</h1>
                 <p>Connectez-vous à votre compte</p>
             </div>
                 
@@ -79,7 +78,7 @@ require_once '../includes/header.php';
                         <input type="checkbox" name="remember" id="remember">
                         <span>Se souvenir de moi</span>
                     </label>
-                    <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+                    <a href="forgot.php" class="forgot-password">Mot de passe oublié ?</a>
                 </div>
                 
                 <button type="submit" class="btn-login-submit">

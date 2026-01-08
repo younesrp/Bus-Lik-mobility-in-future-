@@ -56,8 +56,7 @@
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <!-- Logo -->
             <a href="#" class="text-3xl font-bold text-blue-400 flex items-center gap-2">
-                <img src="../assets/images/image1.png" alt="BusLik Logo" style="height: 40px; width: auto; max-width: 150px;">
-                <span>BusLik</span>
+                <img src="../assets/images/image1.png" alt="BusLik Logo" style="height: 50px; width: auto; max-width: 200px;">
             </a>
 
             <!-- Desktop Menu -->

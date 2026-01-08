@@ -289,16 +289,6 @@ body::before {
     text-align: center;
     margin-bottom: 1rem;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
 }
 
 .login-header {
@@ -1008,7 +998,6 @@ body::before {
 
 .hero-logo img {
     filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.3));
-    animation: float 3s ease-in-out infinite;
 }
 
 .hero-title {
@@ -1314,25 +1303,12 @@ body::before {
 }
 
 .logo-bus img {
-    height: 80px !important;
+    height: 150px !important;
     width: auto !important;
-    max-width: 200px !important;
+    max-width: 350px !important;
     filter: drop-shadow(0 4px 10px rgba(74, 110, 209, 0.3)) !important;
-    animation: float 3s ease-in-out infinite !important;
-    transition: transform 0.3s ease !important;
-}
-
-.logo-bus img:hover {
-    transform: translateY(-5px) scale(1.05) !important;
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
+    display: block !important;
+    margin: 0 auto !important;
 }
 
 .form-input {

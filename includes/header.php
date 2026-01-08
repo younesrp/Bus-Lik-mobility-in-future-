@@ -44,7 +44,6 @@ $basePath = getBasePath();
                         }
                         ?>
                         <img src="<?php echo $logoPath; ?>" alt="BusLik Logo" class="logo-image" style="display: block !important; height: 45px !important; width: auto !important; visibility: visible !important; max-width: 150px !important;">
-                        <span class="logo-text">BusLik</span>
                     </a>
                 </div>
                 <ul class="nav-menu">

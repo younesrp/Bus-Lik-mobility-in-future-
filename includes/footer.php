@@ -2,7 +2,22 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Bus-Lik</h3>
+                    <?php
+                    // S'assurer que getAssetPath est disponible
+                    if (!function_exists('getAssetPath')) {
+                        require_once __DIR__ . '/functions.php';
+                    }
+                    // Déterminer le chemin du logo (même logique que le header)
+                    $logoPath = getAssetPath('assets/images/image1.png');
+                    if (strpos($_SERVER['PHP_SELF'], '/public/') !== false) {
+                        $logoPath = '../assets/images/image1.png';
+                    } elseif (strpos($_SERVER['PHP_SELF'], '/admin/') !== false || strpos($_SERVER['PHP_SELF'], '/api/') !== false) {
+                        $logoPath = '../assets/images/image1.png';
+                    } else {
+                        $logoPath = 'assets/images/image1.png';
+                    }
+                    ?>
+                    <img src="<?php echo $logoPath; ?>" alt="BusLik Logo" style="height: 50px; width: auto; max-width: 150px; margin-bottom: 1rem;">
                     <p>Votre solution de transport urbain moderne et connectée.</p>
                 </div>
                 <div class="footer-section">
@@ -30,10 +45,24 @@ $basePath = getBasePath();
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <?php echo date('Y'); ?> Bus-Lik. Tous droits réservés.</p>
+                <p>&copy; <?php echo date('Y'); ?> Tous droits réservés.</p>
             </div>
         </div>
     </footer>
-    <script src="<?php echo getAssetPath('assets/js/main.js'); ?>"></script>
+    <?php
+    // Déterminer le chemin du JS (même logique que le header)
+    if (!function_exists('getAssetPath')) {
+        require_once __DIR__ . '/functions.php';
+    }
+    $jsPath = getAssetPath('assets/js/main.js');
+    if (strpos($_SERVER['PHP_SELF'], '/public/') !== false) {
+        $jsPath = '../assets/js/main.js';
+    } elseif (strpos($_SERVER['PHP_SELF'], '/admin/') !== false || strpos($_SERVER['PHP_SELF'], '/api/') !== false) {
+        $jsPath = '../assets/js/main.js';
+    } else {
+        $jsPath = 'assets/js/main.js';
+    }
+    ?>
+    <script src="<?php echo $jsPath; ?>"></script>
 </body>
 </html>
